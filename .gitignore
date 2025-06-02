@@ -1,3 +1,19 @@
+# Fichiers compilés Java
 *.class
+
+# Journaux d'exécution
 *.log
+
+# Fichiers système
 .DS_Store
+Thumbs.db
+
+# Dossiers de compilation
+/bin/
+out/
+
+# Configurations d’IDE (IntelliJ IDEA, Eclipse, NetBeans)
+.idea/
+*.iml
+*.ipr
+*.iws
