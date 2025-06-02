@@ -1,5 +1,7 @@
 package sn.ucad.retel1jour.mariemekamara.be;
 
+import sn.ucad.retel1jour.mariemekamara.be.*;
+
 public class Navire {
 	private String nomNavire;
 	private String numeroNavire;
@@ -7,10 +9,11 @@ public class Navire {
 	private double largeurNavire;	
 	private double volumeNavire;
 	private double tiranEauNavire;
+	private Consignataire consignataire;
 	
     // Constructeurs
 	public Navire(){}
-	public Navire(String numeroNavire, String nomNavire, double longueurNavire, double largeurNavire,double volumeNavire, double tiranEauNavire )
+	public Navire(String numeroNavire, String nomNavire, double longueurNavire, double largeurNavire,double volumeNavire, double tiranEauNavire, Consignataire consignataire )
 		{
 		this.nomNavire=nomNavire;
 		this.numeroNavire=numeroNavire;
@@ -18,6 +21,7 @@ public class Navire {
 		this.largeurNavire=largeurNavire;
 		this.volumeNavire=volumeNavire;
 		this.tiranEauNavire=tiranEauNavire;
+		this.consignataire=consignataire;
 		}
 
     // Getters et Setters
@@ -55,12 +59,20 @@ public class Navire {
     public void setVolumeNavire(double volumeNavire) { 
     	this.volumeNavire = volumeNavire; 
     	}
-    
-    public double getTirantEauNavire() { 
-    	return tiranEauNavire; 
-    	}
-    public void setTirantEauNavire(double tirantEauNavire) {
-    	this.tiranEauNavire = tirantEauNavire; 
-    	}
+
+	public double getTiranEauNavire() {
+		return tiranEauNavire;
+	}
+	public void setTiranEauNavire (double tiranEauNavire) {
+		this.tiranEauNavire = tiranEauNavire;
+	}
+
+	public Consignataire getConsignataire() {
+		return consignataire;
+	}
+	public void setConsignataire(Consignataire consignataire) {
+		this.consignataire = consignataire;
+	}
+
 }
 

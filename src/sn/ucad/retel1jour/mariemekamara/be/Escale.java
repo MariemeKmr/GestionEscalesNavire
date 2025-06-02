@@ -1,6 +1,7 @@
 package sn.ucad.retel1jour.mariemekamara.be;
 
 import java.util.Date;
+import sn.ucad.retel1jour.mariemekamara.be.Consignataire;
 
 public class Escale {
     private String numeroEscale;
@@ -8,18 +9,22 @@ public class Escale {
     private Date finEscale;
     private Navire myNavire;
     private double prixSejour;
+    private Consignataire consignataire;
+    private String zone; // "rade" ou "intérieur"
 
-    
+
+
     // Constructeurs
     public Escale() {}
     
-    public Escale(String numeroEscale, Date debutEscale, Date finEscale, Navire myNavire, double prixSejour) {
+    public Escale(String numeroEscale, Date debutEscale, Date finEscale, Navire myNavire, double prixSejour, Consignataire consignataire, String zone) {
         this.numeroEscale = numeroEscale;
         this.debutEscale = debutEscale;
         this.finEscale = finEscale;
         this.myNavire = myNavire;
         this.prixSejour = prixSejour;
-
+        this.consignataire = consignataire;
+        this.zone = zone;
     }
 
 	// Getters et Setters
@@ -57,5 +62,20 @@ public class Escale {
     public void setPrixSejour(double prixSejour) {
     	this.prixSejour = prixSejour; 
     	}
+    
+    public Consignataire getConsignataire() {
+        return consignataire;
+    	}
+
+    public void setConsignataire(Consignataire consignataire) {
+        this.consignataire = consignataire;
+    	}
+
+    public String getZone() {
+        return zone;
+    }
+    public void setZone(String zone) {
+        this.zone = zone;
+    }
 }
 

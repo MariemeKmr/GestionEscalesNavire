@@ -13,7 +13,7 @@ public class InterfaceGraphique extends JFrame {
     private CalculPrestation calculer;
     
     public InterfaceGraphique() {
-        calculer = new CalculPrestation();
+        calculer = new CalculPrestation();wxxxxxwq<>wxwxxq
         initializeGUI();
     }
     
@@ -52,25 +52,35 @@ public class InterfaceGraphique extends JFrame {
         pack();
         setLocationRelativeTo(null);
     }
-    
+
     private void afficherResultat() {
         StringBuilder sb = new StringBuilder();
-        
+
         sb.append("=== FACTURE DE PRESTATION ===\n\n");
-        
+
         // Informations du navire
         Navire navire = calculer.getNavire();
         sb.append("NAVIRE: ").append(navire.getNomNavire()).append(" (").append(navire.getNumeroNavire()).append(")\n");
-        sb.append("Longueur: ").append(navire.getLongueurNavire()).append(" - Largeur: ").append(navire.getLargeurNavire()).append("\n\n");
-        sb.append("Volume: ").append(navire.getVolumeNavire()).append(" - Tirant d'eau: ").append(navire.getTirantEauNavire()).append("\n\n");
-        
+        sb.append("Longueur: ").append(navire.getLongueurNavire()).append(" - Largeur: ").append(navire.getLargeurNavire()).append("\n");
+        sb.append("Volume: ").append(navire.getVolumeNavire()).append(" - Tirant d'eau: ").append(navire.getTiranEauNavire()).append("\n\n");
+
         // Informations de l'escale
         Escale escale = calculer.getEscale();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         sb.append("ESCALE N°: ").append(escale.getNumeroEscale()).append("\n");
         sb.append("Période: du ").append(sdf.format(escale.getDebutEscale()))
-          .append(" au ").append(sdf.format(escale.getFinEscale())).append("\n\n");
-        
+                .append(" au ").append(sdf.format(escale.getFinEscale())).append("\n\n");
+
+        // Informations du consignataire
+        Consignataire c = escale.getConsignataire();
+        if (c != null) {
+            sb.append("CONSIGNATAIRE:\n");
+            sb.append("- ID              : ").append(c.getIdConsignataire()).append("\n");
+            sb.append("- Raison sociale  : ").append(c.getRaisonSociale()).append("\n");
+            sb.append("- Adresse         : ").append(c.getAdresse()).append("\n");
+            sb.append("- Téléphone       : ").append(c.getTelephone()).append("\n\n");
+        }
+
         // Détail des bons
         sb.append("DETAIL DES BONS DE PILOTAGE:\n");
         double totalBons = 0;
@@ -78,22 +88,35 @@ public class InterfaceGraphique extends JFrame {
             double montant = calculer.calculMontantBon(bon);
             totalBons += montant;
             sb.append("- ").append(bon.getTypeMouvement().getLibelleTypeMvt())
-              .append(" (Poste ").append(bon.getPosteQuai()).append("): ")
-              .append(String.format("%.0f", montant)).append(" CFA\n");
+                    .append(" (Poste ").append(bon.getPosteAQuai()).append("): ")
+                    .append(String.format("%.0f", montant)).append(" CFA\n");
         }
         sb.append("Sous-total bons: ").append(String.format("%.0f", totalBons)).append(" CFA\n\n");
-        
+
+        // TARIFS APPLIQUÉS (sans modifier totalBons)
+        sb.append("TARIFS APPLIQUÉS:\n");
+        for (BonPilotage bon : calculer.getMesBons()) {
+            double montant = calculer.calculMontantBon(bon);
+            double tarifMouvement = calculer.getTarifParMouvement(bon);
+            sb.append("- ").append(bon.getTypeMouvement().getLibelleTypeMvt())
+                    .append(" (Poste ").append(bon.getPosteAQuai()).append("): ")
+                    .append(String.format("%.0f", montant)).append(" CFA")
+                    .append(" (Tarif: ").append(String.format("%.0f", tarifMouvement)).append(" CFA)\n");
+        }
+
+        sb.append("- Tarif par jour de séjour : ").append(String.format("%.0f", calculer.getTarifParJour())).append(" CFA\n\n");
+
         // Coût du séjour
         double montantSejour = calculer.calculMontantSejour();
         sb.append("COUT DU SEJOUR: ").append(String.format("%.0f", montantSejour)).append(" CFA\n\n");
-        
+
         // Total général
         double total = calculer.calculerMontantTotal();
         sb.append("TOTAL GENERAL: ").append(String.format("%.0f", total)).append(" CFA\n");
-        
+
         resultArea.setText(sb.toString());
     }
-    
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override

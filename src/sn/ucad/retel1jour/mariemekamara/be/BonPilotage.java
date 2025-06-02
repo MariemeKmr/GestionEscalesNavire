@@ -6,16 +6,18 @@ public class BonPilotage {
 	private int idMouvement;
 	private Escale monEscale;
     private Date  dateDeBon;
+	private Date  dateFinBon;
     private String posteaQuai;
     private TypeMouvement typeMouvement;
     
     // Constructeurs
     public BonPilotage() {}
     
-    public BonPilotage(int idMouvement, Escale monEscale, Date dateDeBon, String posteaQuai, TypeMouvement typeMouvement) {
+    public BonPilotage(int idMouvement, Escale monEscale, Date dateDeBon, Date  dateFinBon, String posteaQuai, TypeMouvement typeMouvement) {
         this.idMouvement=idMouvement;
         this.monEscale=monEscale;
         this.dateDeBon =dateDeBon;
+		this.dateFinBon =dateFinBon;
     	this.posteaQuai = posteaQuai;
         this.typeMouvement = typeMouvement;
     }
@@ -43,13 +45,20 @@ public class BonPilotage {
     public void setDateDeBon(Date dateDeBon) { 
     	this.dateDeBon = dateDeBon;     
     	}
+
+
+	public Date getDateFinBon() {
+		return dateFinBon;
+	}
+	public void setDateFinBon(Date dateFinBon) {
+		this.dateFinBon = dateFinBon;
+	}
     
-    
-    public String getPosteQuai() {
+    public String getPosteAQuai() {
     	return posteaQuai; 
     	}
-    public void setPosteQuai(String posteQuai) {
-    	this.posteaQuai = posteQuai; 
+    public void setPosteAQuai(String posteaQuai) {
+    	this.posteaQuai = posteaQuai;
     	}
     
     
